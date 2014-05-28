@@ -151,8 +151,6 @@ get_map_from_poll(map_poll *p)
     map * m = 0;
     unsigned int *bm = get_bitmap(p);
     pollHead.free--;
-    if(!pollHead.free)
-	cacheHasFree = 0;
     idx = getIndex(bm,POLL_BITMAP_COUNT);
     m = ((map *)(((char*)p)+4096)) + idx;
 
@@ -209,7 +207,7 @@ do_map(size_t size,int fd)
     m->size = size;
     m->fd = 0;
     m->magic = MAP_MAGIC;
-    //printf("return map 0x%llx\n",m);
+
     return m;
 }
 
@@ -237,7 +235,7 @@ do_unmap(map *m)
 
     pollHead.free++;
     CLE_BIT((*bp),mapIdx);
-    if(!cacheHasFree)
+    if(unlikely(!cacheHasFree))
 	cacheHasFree = p;
 
     GLOBAL_UNLOCK();
