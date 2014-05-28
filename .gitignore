@@ -1,1 +1,8 @@
 *~
+CMakeCache.txt
+CMakeFiles
+cmake_install.cmake
+libzalloc.so
+mmap_test
+perf.data*
+Makefile

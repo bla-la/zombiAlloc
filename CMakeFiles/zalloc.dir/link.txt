@@ -1,1 +1,0 @@
-clang  -fPIC -Wall -ggdb3 -O3 -fheinous-gnu-extensions -fno-builtin -march=amdfam10 -mcx16 -mpopcnt -fno-builtin -ffast-math   -shared -Wl,-soname,libzalloc.so -o libzalloc.so CMakeFiles/zalloc.dir/src/maps.c.o CMakeFiles/zalloc.dir/src/alloc.c.o -ldl 
