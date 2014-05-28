@@ -1,0 +1,1 @@
+clang  -Wall -ggdb3 -O3 -fheinous-gnu-extensions -fno-builtin -march=amdfam10 -mcx16 -mpopcnt -fno-builtin -ffast-math    CMakeFiles/mmap_test.dir/test/mmap_test.c.o  -o mmap_test -rdynamic libzalloc.so -ldl -Wl,-rpath,/home/zaharov/dev/zalloc 

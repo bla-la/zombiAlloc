@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+./include/maps.h
+
+/home/zaharov/dev/zalloc/test/mmap_test.c
+stdio.h
+-
+maps.h
+-
+

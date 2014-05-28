@@ -27,6 +27,7 @@
 #define GET_POLL_START(m) ((unsigned long long)((-MAP_POLL_SIZE & (unsigned long long) m)))
 #define GET_POLL(m) ((char *)(GET_POLL_START(m) - MAP_META_SIZE))
 #define GET_MAP_IDX(m) ((((unsigned long long)m) - GET_POLL_START(m))/sizeof(map))
+#define BITMAP_EMPTY(bm) (*((unsigned long long *)(bm)) == -1 && *((unsigned long long *)(bm)+1) == -1)
 
 typedef struct __map_poll map_poll;
 struct __map_poll
@@ -94,19 +95,13 @@ init_poll_bitmap(map_poll *p)
 }
 
 
-int
+static int
 poll_has_free(map_poll *p)
 {
     int i;
     unsigned int * bp = get_bitmap(p);
 
-    for(i = 0; i < POLL_BITMAP_COUNT; i++)
-    {
-	if( *(bp+i) != 0xffffffff)
-	    return 1;
-    }
-
-    return 0;
+    return !BITMAP_EMPTY(bp);
 }
 
 map_poll *
@@ -140,7 +135,7 @@ int getIndex(unsigned int * bitmap,size_t len)
 	i++;
     }
 
-    if(idx != -1)
+    if(unlikely(idx != -1))
     {
 	SET_BIT(*(bitmap-1),idx);
 	idx += ((i-1) * 32);
@@ -154,13 +149,14 @@ get_map_from_poll(map_poll *p)
 {
     int idx;
     map * m = 0;
+    unsigned int *bm = get_bitmap(p);
     pollHead.free--;
     if(!pollHead.free)
 	cacheHasFree = 0;
-    idx = getIndex(get_bitmap(p),POLL_BITMAP_COUNT);
+    idx = getIndex(bm,POLL_BITMAP_COUNT);
     m = ((map *)(((char*)p)+4096)) + idx;
 
-    if(idx == (POLL_BITMAP_COUNT * 32) - 1)
+    if(unlikely(BITMAP_EMPTY(bm)))
 	cacheHasFree = 0;
 
     return m;
@@ -172,7 +168,7 @@ get_map()
 {
     map *m = 0;
     map_poll *p = 0;
-    if(!pollHead.free)
+    if(unlikely(!pollHead.free))
     {
 	p = alloc_poll();
 	list_append((&pollHead),p,map_poll);
@@ -184,9 +180,9 @@ get_map()
     }
 
     p = pollHead.first;
-    while( p && !poll_has_free(p))
+    while(unlikely(p && !poll_has_free(p)))
 	p = p->next;
-    if(!p)
+    if(unlikely(!p))
 	abort();
     m = get_map_from_poll(p);
     return m;

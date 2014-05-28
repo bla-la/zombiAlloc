@@ -102,32 +102,6 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named alloc_test
-
-# Build rule for target.
-alloc_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 alloc_test
-.PHONY : alloc_test
-
-# fast build rule for target.
-alloc_test/fast:
-	$(MAKE) -f CMakeFiles/alloc_test.dir/build.make CMakeFiles/alloc_test.dir/build
-.PHONY : alloc_test/fast
-
-#=============================================================================
-# Target rules for targets named bmap_test
-
-# Build rule for target.
-bmap_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 bmap_test
-.PHONY : bmap_test
-
-# fast build rule for target.
-bmap_test/fast:
-	$(MAKE) -f CMakeFiles/bmap_test.dir/build.make CMakeFiles/bmap_test.dir/build
-.PHONY : bmap_test/fast
-
-#=============================================================================
 # Target rules for targets named mmap_test
 
 # Build rule for target.
@@ -177,30 +151,6 @@ src/alloc.c.s:
 	$(MAKE) -f CMakeFiles/zalloc.dir/build.make CMakeFiles/zalloc.dir/src/alloc.c.s
 .PHONY : src/alloc.c.s
 
-src/bitmap.o: src/bitmap.c.o
-.PHONY : src/bitmap.o
-
-# target to build an object file
-src/bitmap.c.o:
-	$(MAKE) -f CMakeFiles/zalloc.dir/build.make CMakeFiles/zalloc.dir/src/bitmap.c.o
-.PHONY : src/bitmap.c.o
-
-src/bitmap.i: src/bitmap.c.i
-.PHONY : src/bitmap.i
-
-# target to preprocess a source file
-src/bitmap.c.i:
-	$(MAKE) -f CMakeFiles/zalloc.dir/build.make CMakeFiles/zalloc.dir/src/bitmap.c.i
-.PHONY : src/bitmap.c.i
-
-src/bitmap.s: src/bitmap.c.s
-.PHONY : src/bitmap.s
-
-# target to generate assembly for a file
-src/bitmap.c.s:
-	$(MAKE) -f CMakeFiles/zalloc.dir/build.make CMakeFiles/zalloc.dir/src/bitmap.c.s
-.PHONY : src/bitmap.c.s
-
 src/maps.o: src/maps.c.o
 .PHONY : src/maps.o
 
@@ -224,54 +174,6 @@ src/maps.s: src/maps.c.s
 src/maps.c.s:
 	$(MAKE) -f CMakeFiles/zalloc.dir/build.make CMakeFiles/zalloc.dir/src/maps.c.s
 .PHONY : src/maps.c.s
-
-test/alloc_test.o: test/alloc_test.c.o
-.PHONY : test/alloc_test.o
-
-# target to build an object file
-test/alloc_test.c.o:
-	$(MAKE) -f CMakeFiles/alloc_test.dir/build.make CMakeFiles/alloc_test.dir/test/alloc_test.c.o
-.PHONY : test/alloc_test.c.o
-
-test/alloc_test.i: test/alloc_test.c.i
-.PHONY : test/alloc_test.i
-
-# target to preprocess a source file
-test/alloc_test.c.i:
-	$(MAKE) -f CMakeFiles/alloc_test.dir/build.make CMakeFiles/alloc_test.dir/test/alloc_test.c.i
-.PHONY : test/alloc_test.c.i
-
-test/alloc_test.s: test/alloc_test.c.s
-.PHONY : test/alloc_test.s
-
-# target to generate assembly for a file
-test/alloc_test.c.s:
-	$(MAKE) -f CMakeFiles/alloc_test.dir/build.make CMakeFiles/alloc_test.dir/test/alloc_test.c.s
-.PHONY : test/alloc_test.c.s
-
-test/bmap_test.o: test/bmap_test.c.o
-.PHONY : test/bmap_test.o
-
-# target to build an object file
-test/bmap_test.c.o:
-	$(MAKE) -f CMakeFiles/bmap_test.dir/build.make CMakeFiles/bmap_test.dir/test/bmap_test.c.o
-.PHONY : test/bmap_test.c.o
-
-test/bmap_test.i: test/bmap_test.c.i
-.PHONY : test/bmap_test.i
-
-# target to preprocess a source file
-test/bmap_test.c.i:
-	$(MAKE) -f CMakeFiles/bmap_test.dir/build.make CMakeFiles/bmap_test.dir/test/bmap_test.c.i
-.PHONY : test/bmap_test.c.i
-
-test/bmap_test.s: test/bmap_test.c.s
-.PHONY : test/bmap_test.s
-
-# target to generate assembly for a file
-test/bmap_test.c.s:
-	$(MAKE) -f CMakeFiles/bmap_test.dir/build.make CMakeFiles/bmap_test.dir/test/bmap_test.c.s
-.PHONY : test/bmap_test.c.s
 
 test/mmap_test.o: test/mmap_test.c.o
 .PHONY : test/mmap_test.o
@@ -303,8 +205,6 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... alloc_test"
-	@echo "... bmap_test"
 	@echo "... edit_cache"
 	@echo "... mmap_test"
 	@echo "... rebuild_cache"
@@ -312,18 +212,9 @@ help:
 	@echo "... src/alloc.o"
 	@echo "... src/alloc.i"
 	@echo "... src/alloc.s"
-	@echo "... src/bitmap.o"
-	@echo "... src/bitmap.i"
-	@echo "... src/bitmap.s"
 	@echo "... src/maps.o"
 	@echo "... src/maps.i"
 	@echo "... src/maps.s"
-	@echo "... test/alloc_test.o"
-	@echo "... test/alloc_test.i"
-	@echo "... test/alloc_test.s"
-	@echo "... test/bmap_test.o"
-	@echo "... test/bmap_test.i"
-	@echo "... test/bmap_test.s"
 	@echo "... test/mmap_test.o"
 	@echo "... test/mmap_test.i"
 	@echo "... test/mmap_test.s"

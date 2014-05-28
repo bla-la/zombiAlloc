@@ -1,6 +1,9 @@
 #ifndef __MAPS_H__
 #define __MAPS_H__
 
+#define unlikely(x) __builtin_expect(!!(x), 0)
+#define likely(x) __builtin_expect(!!(x), 1)
+
 typedef struct __map map;
 struct __map
 {
@@ -10,10 +13,6 @@ struct __map
     int magic;
     void * reserved;
 }__attribute__ ((aligned (16)));
-
-
-
-
 
 /*
 #define ffz(bits) \

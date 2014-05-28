@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+./include/list.h
+
+./include/lock.h
+
+./include/maps.h
+
+/home/zaharov/dev/zalloc/src/maps.c
+stdio.h
+-
+string.h
+-
+unistd.h
+-
+stdlib.h
+-
+sys/mman.h
+-
+lock.h
+-
+list.h
+-
+maps.h
+-
+

@@ -1,0 +1,2 @@
+/home/zaharov/dev/zalloc/CMakeFiles/mmap_test.dir
+/home/zaharov/dev/zalloc/CMakeFiles/zalloc.dir
